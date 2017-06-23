@@ -1,0 +1,15 @@
+{% extends 'contacts/base.html' %}
+
+{% block content %}
+<h1>{{ person.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% load material_form %}
+
+<form action="{% url 'contacts:update' person.id%}" method="post">
+    {% csrf_token %}
+    {% form form=form %}{% endform %}
+    <input type="submit" value="Update" />
+</form>
+
+{% endblock %}
